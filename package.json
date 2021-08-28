@@ -1,0 +1,63 @@
+{
+  "name": "cybexjsx",
+  "version": "0.0.1",
+  "description": "a js lib for Cybex chain",
+  "main": "es/index.js",
+  "author": "ldwformat@gmail.com",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf es cjs && tsc -p tsconfig.es.json && tsc -p tsconfig.cjs.json",
+    "doc": "rm -rf docs && typedoc --includes src/**/*.ts --exclude \"**/*+(.spec|.e2e).ts\" --tsconfig tsconfig.es.json --out docs",
+    "test": "jest --verbose",
+    "test:watch": "jest --watch --verbose"
+  },
+  "devDependencies": {
+    "@types/assert": "^1.4.2",
+    "@types/bigi": "^1.4.2",
+    "@types/bs58": "^4.0.0",
+    "@types/bytebuffer": "^5.0.40",
+    "@types/create-hash": "^1.2.0",
+    "@types/create-hmac": "^1.1.0",
+    "@types/deep-equal": "^1.0.1",
+    "@types/ecurve": "^1.0.0",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.10",
+    "awesome-typescript-loader": "^5.2.1",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "typedoc": "^0.14.2",
+    "typescript": "^3.5.2"
+  },
+  "dependencies": {
+    "assert": "^2.0.0",
+    "bigi": "^1.4.2",
+    "bignumber.js": "^9.0.0",
+    "bs58": "^4.0.1",
+    "buffer": "^5.2.1",
+    "bytebuffer": "^5.0.1",
+    "create-hash": "^1.2.0",
+    "create-hmac": "^1.1.7",
+    "crypto-js": "^3.1.9-1",
+    "deep-equal": "^1.0.1",
+    "ecurve": "^1.0.6",
+    "secure-random": "^1.1.2",
+    "wolfy87-eventemitter": "^5.2.6"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(tsx?|jsx?)$": "ts-jest"
+    },
+    "testRegex": "__test__/.+(\\.|/)(test|spec)\\.(tsx?|jsx?)$",
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "wasm",
+      "json"
+    ]
+  }
+}
