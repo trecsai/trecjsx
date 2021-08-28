@@ -30,7 +30,7 @@ var PublicKey = /** @class */ (function () {
      *  @return PublicKey or `null` (if the public_key string is invalid)
      */
     PublicKey.fromPublicKeyString = function (public_key, address_prefix) {
-        if (address_prefix === void 0) { address_prefix = "CYB"; }
+        if (address_prefix === void 0) { address_prefix = "TREC"; }
         try {
             return PublicKey.fromStringOrThrow(public_key, address_prefix);
         }
@@ -46,7 +46,7 @@ var PublicKey = /** @class */ (function () {
      *   @return PublicKey
      */
     PublicKey.fromStringOrThrow = function (public_key, address_prefix) {
-        if (address_prefix === void 0) { address_prefix = "CYB"; }
+        if (address_prefix === void 0) { address_prefix = "TREC"; }
         var prefix = public_key.slice(0, address_prefix.length);
         assert.strictEqual(address_prefix, prefix, "Expecting key to begin with " + address_prefix + ", instead got " + prefix);
         var public_key_buf = Buffer.from(decode(public_key.slice(address_prefix.length)).toString("binary"), "binary");
@@ -78,7 +78,7 @@ var PublicKey = /** @class */ (function () {
         var point = Point.decodeFrom(secp256k1, buf);
         return PublicKey.fromPoint(point);
     };
-    /** cyb::blockchain::address (unique but not a full public key) */
+    /** trec::blockchain::address (unique but not a full public key) */
     PublicKey.prototype.toBlockchainAddress = function () {
         var pub_buf = this.toBuffer();
         var pub_sha = sha512(pub_buf);
@@ -86,7 +86,7 @@ var PublicKey = /** @class */ (function () {
     };
     /** Alias for {@link toPublicKeyString} */
     PublicKey.prototype.toString = function (address_prefix) {
-        if (address_prefix === void 0) { address_prefix = "CYB"; }
+        if (address_prefix === void 0) { address_prefix = "TREC"; }
         return this.toPublicKeyString(address_prefix);
     };
     /**
@@ -94,14 +94,14 @@ var PublicKey = /** @class */ (function () {
      *    {return} string
      */
     PublicKey.prototype.toPublicKeyString = function (address_prefix) {
-        if (address_prefix === void 0) { address_prefix = "CYB"; }
+        if (address_prefix === void 0) { address_prefix = "TREC"; }
         var pub_buf = this.toBuffer();
         var checksum = ripemd160(pub_buf);
         var addy = Buffer.concat([pub_buf, checksum.slice(0, 4)]);
         return address_prefix + encode(addy);
     };
     PublicKey.prototype.toAddressString = function (address_prefix) {
-        if (address_prefix === void 0) { address_prefix = "CYB"; }
+        if (address_prefix === void 0) { address_prefix = "TREC"; }
         var pub_buf = this.toBuffer();
         var pub_sha = sha512(pub_buf);
         var addy = ripemd160(pub_sha);
